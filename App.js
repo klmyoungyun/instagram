@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import Stack from './navigation/Stack';
-import Login from './screen/Login';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import rootReducer from './reducers';
+import LoginNavigator from './navigation/LoginNavigator';
 
 const App = () => {
-  return <Login />;
+  return (
+    <Provider store={createStore(rootReducer)}>
+      <NavigationContainer>
+        <LoginNavigator/>
+      </NavigationContainer>
+    </Provider>
+  );
 };
 export default App;

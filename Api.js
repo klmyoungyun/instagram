@@ -1,5 +1,4 @@
-import axois from 'axois';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 export const onSubmit = async ({userId, password}) => {
   const {data} = await signIn({userId, password});
@@ -8,7 +7,7 @@ export const onSubmit = async ({userId, password}) => {
   }
 };
 const signIn = async ({userId, password}) => {
-  const {data} = await axois.post('http://localhost:4000/api/signin', {
+  const {data} = await axios.post('http://localhost:4000/api/signin', {
     userId,
     password,
   });

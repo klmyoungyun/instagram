@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {HeaderIcon} from '../Utility';
 import Tab from './Tab';
 
-const Stack = createStackNavigator();
+const MainNavigator = createStackNavigator();
 
 const Header = styled.View`
   flex-direction: row;
@@ -13,7 +13,7 @@ const Header = styled.View`
 
 export default () => {
   return (
-    <Stack.Navigator
+    <MainNavigator.Navigator
       screenOptions={{
         headerStyle: {shadowColor: 'white'},
         headerTitle: 'instagram',
@@ -27,7 +27,7 @@ export default () => {
           </Header>
         ),
       }}>
-      <Stack.Screen name="Tab" component={Tab}></Stack.Screen>
-    </Stack.Navigator>
+      <MainNavigator.Screen name="Tab" component={Tab}></MainNavigator.Screen>
+    </MainNavigator.Navigator>
   );
 };

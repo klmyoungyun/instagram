@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
-import { onSubmit } from '../Api';
+import {loginUser} from '../action/user_actions';
 
 const Container = styled.View`
   flex: 1;
@@ -33,22 +35,29 @@ const TextInput = styled.TextInput`
   margin-bottom: 10px;
   padding: 9px 0px 7px 8px;
 `;
-const SearchButton = styled.View`
-  height: 45px;
+const SmallBtn = styled.View`
+  height: 30px;
   align-items: flex-end;
   justify-content: center;
 `;
-const Button = styled.View`
+
+const Btn = styled.View`
   height: 45px;
   background-color: #7fcafb;
   border-radius: 7px;
   align-items: center;
   justify-content: center;
 `;
+const Login = ({addToken}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigation = useNavigation();
 
-const Login = () => {
-  const [userId, setUserId] = useState(null);
-  const [userPassword, setUserPassword] = useState(null);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    addToken(email, password);
+  };
+
   return (
     <Container>
       <TitleContainer>
@@ -59,23 +68,27 @@ const Login = () => {
         <InputContainer>
           <TextInput
             placeholder="전화번호, 사용자 이름 또는 이메일"
-            onChangeText={(v) => setUserId(v)}></TextInput>
+            onChangeText={(value) => setEmail(value)}></TextInput>
           <TextInput
             placeholder="비밀번호"
-            onChangeText={(v) => setUserPassword(v)}></TextInput>
+            onChangeText={(value) => setPassword(value)}></TextInput>
         </InputContainer>
-
-        <SearchButton>
+        <SmallBtn>
+          <TouchableOpacity onPress={()=> navigation.navigate('SignUp')}>
+            <Text style={{color: '#7fcafb'}}>회원가입</Text>
+          </TouchableOpacity>
+        </SmallBtn>
+        <SmallBtn style={{marginBottom: 10}}>
           <TouchableOpacity>
             <Text style={{color: '#7fcafb'}}>비밀번호 찾기</Text>
           </TouchableOpacity>
-        </SearchButton>
+        </SmallBtn>
 
         <>
-          <TouchableOpacity onPress={() => onSubmit(userId, userPassword)}>
-            <Button>
+          <TouchableOpacity onPress={onSubmit}>
+            <Btn>
               <Text style={{color: 'white'}}>로그인</Text>
-            </Button>
+            </Btn>
           </TouchableOpacity>
         </>
       </Contents>
@@ -83,4 +96,10 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapDispatchToProps = (distpatch) => {
+  return {
+    addToken: (email, password) =>
+      distpatch(loginUser({email: email, password: password})),
+  };
+};
+export default connect(null, mapDispatchToProps)(Login);
