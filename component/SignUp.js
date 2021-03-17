@@ -4,7 +4,7 @@ import {Text, View} from 'react-native';
 const SignUp =  ({navigation}) => {
   return (
     <View>
-      <Text> Hello world</Text>
+      <Text> 회원가입 페이지</Text>
     </View>
   );
 };
