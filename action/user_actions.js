@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {LOGIN_USER} from './types';
 
-const DOMAIN = 'http://121.129.210.83:8080';
+const DOMAIN = '';
 
 export const loginUser = (dataToSubmit) => {
   console.log(dataToSubmit);
