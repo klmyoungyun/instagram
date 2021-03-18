@@ -1,5 +1,6 @@
 import {createStore} from 'redux';
-import {LOGIN_USER} from '../action/types';
+
+import {LOGIN_USER, SIGNUP_USER} from '../action/types';
 
 const userReducer = (state = {}, action) => {
   switch (action.type) {

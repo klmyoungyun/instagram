@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
 import {loginUser} from '../action/user_actions';
@@ -31,7 +30,6 @@ const TextInput = styled.TextInput`
   border-width: 1px;
   border-radius: 7px;
   background-color: #fafafa;
-
   margin-bottom: 10px;
   padding: 9px 0px 7px 8px;
 `;
@@ -40,7 +38,6 @@ const SmallBtn = styled.View`
   align-items: flex-end;
   justify-content: center;
 `;
-
 const Btn = styled.View`
   height: 45px;
   background-color: #7fcafb;
@@ -48,10 +45,9 @@ const Btn = styled.View`
   align-items: center;
   justify-content: center;
 `;
-const Login = ({addToken}) => {
+const Login = ({navigation, route, addToken}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigation = useNavigation();
 
   const onSubmit = (e) => {
     e.preventDefault();

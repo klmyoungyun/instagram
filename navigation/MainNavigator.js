@@ -1,19 +1,20 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
+import {TouchableOpacity} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
+
 import {HeaderIcon} from '../Utility';
 import Tab from './Tab';
 
-const MainNavigator = createStackNavigator();
+const MainStack = createStackNavigator();
 
 const Header = styled.View`
   flex-direction: row;
 `;
 
-export default () => {
+const MainContainer = () => {
   return (
-    <MainNavigator.Navigator
+    <MainStack.Navigator
       screenOptions={{
         headerStyle: {shadowColor: 'white'},
         headerTitle: 'instagram',
@@ -27,7 +28,9 @@ export default () => {
           </Header>
         ),
       }}>
-      <MainNavigator.Screen name="Tab" component={Tab}></MainNavigator.Screen>
-    </MainNavigator.Navigator>
+      <MainStack.Screen name="Tab" component={Tab}></MainStack.Screen>
+    </MainStack.Navigator>
   );
 };
+
+export default MainContainer;
