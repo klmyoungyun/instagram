@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import rootReducer from './reducers';
@@ -7,7 +7,7 @@ import Navigator from './navigation/Navigator';
 const App = () => {
   return (
     <Provider store={createStore(rootReducer)}>
-      <Navigator/>
+      <Navigator />
     </Provider>
   );
 };

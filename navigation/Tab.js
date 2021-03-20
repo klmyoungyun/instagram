@@ -1,14 +1,40 @@
 import React from 'react';
 import {Platform} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Home from '../screen/Home';
 import Profile from '../screen/Profile';
 import Search from '../screen/Search';
+import {NavigationContainer} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
+const HomeTab = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
+    </Stack.Navigator>
+  );
+};
+
+const ProfileTab = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Profile" component={Profile} />
+    </Stack.Navigator>
+  );
+};
+
+const SearchTab = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Search" component={Search} />
+    </Stack.Navigator>
+  );
+};
 export default () => {
   return (
     <Tab.Navigator
@@ -30,9 +56,9 @@ export default () => {
           return <Icon name={iconName} size={26} color="black" />;
         },
       })}>
-      <Tab.Screen name="Home" component={Home}></Tab.Screen>
-      <Tab.Screen name="Profile" component={Profile}></Tab.Screen>
-      <Tab.Screen name="Search" component={Search}></Tab.Screen>
+      <Tab.Screen name="Home" component={HomeTab}></Tab.Screen>
+      <Tab.Screen name="Profile" component={ProfileTab}></Tab.Screen>
+      <Tab.Screen name="Search" component={SearchTab}></Tab.Screen>
     </Tab.Navigator>
   );
 };

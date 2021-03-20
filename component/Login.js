@@ -45,7 +45,7 @@ const Btn = styled.View`
   align-items: center;
   justify-content: center;
 `;
-const Login = ({navigation, route, addToken}) => {
+const Login = ({navigation, addToken}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
