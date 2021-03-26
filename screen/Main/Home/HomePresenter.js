@@ -1,10 +1,9 @@
-import React, {useLayoutEffect} from 'react';
-import {ScrollView, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {ScrollView} from 'react-native';
 import {Text} from 'react-native';
 import styled from 'styled-components';
 
-import Story from '../component/Story';
-import {HeaderIcon} from '../Utility';
+import Story from '../../../component/Story';
 
 const Container = styled.View`
   flex: 1;
@@ -19,25 +18,7 @@ const FeedContainer = styled.View`
   height: 100%;
   border: 1px solid blue;
 `;
-const Header = styled.View`
-  flex-direction: row;
-`;
-const Home = ({navigation}) => {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerStyle: {shadowColor: 'white'},
-      headerTitle: 'instagram',
-      headerTitleAlign: 'left',
-      headerTitleStyle: {fontSize: 25},
-      headerRight: () => (
-        <Header>
-          <TouchableOpacity>{HeaderIcon('plus-square')}</TouchableOpacity>
-          <TouchableOpacity>{HeaderIcon('heart')}</TouchableOpacity>
-          <TouchableOpacity>{HeaderIcon('send')}</TouchableOpacity>
-        </Header>
-      ),
-    });
-  }, []);
+export default () => {
   return (
     <Container>
       <StoryContainer>
@@ -91,4 +72,3 @@ const Home = ({navigation}) => {
   );
 };
 
-export default Home;

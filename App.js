@@ -1,12 +1,15 @@
 import React from 'react';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import rootReducer from './reducers';
+import ReduxThunk from 'redux-thunk';
+
+import rootReducer from './redux/rootReducer';
 import Navigator from './navigation/Navigator';
 
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 const App = () => {
   return (
-    <Provider store={createStore(rootReducer)}>
+    <Provider store={store}>
       <Navigator />
     </Provider>
   );

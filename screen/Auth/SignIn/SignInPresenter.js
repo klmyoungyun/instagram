@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import {connect} from 'react-redux';
 import styled from 'styled-components';
-import {loginUser} from '../action/user_actions';
 
 const Container = styled.View`
   flex: 1;
@@ -45,15 +43,14 @@ const Btn = styled.View`
   align-items: center;
   justify-content: center;
 `;
-const Login = ({navigation, addToken}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    addToken(email, password);
-  };
-
+export default ({
+  navigation,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  handleSubmit,
+}) => {
   return (
     <Container>
       <TitleContainer>
@@ -63,25 +60,23 @@ const Login = ({navigation, addToken}) => {
       <Contents>
         <InputContainer>
           <TextInput
+            value={email}
             placeholder="전화번호, 사용자 이름 또는 이메일"
             onChangeText={(value) => setEmail(value)}></TextInput>
           <TextInput
+            value={password}
             placeholder="비밀번호"
             onChangeText={(value) => setPassword(value)}></TextInput>
         </InputContainer>
+
         <SmallBtn>
-          <TouchableOpacity onPress={()=> navigation.navigate('SignUp')}>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
             <Text style={{color: '#7fcafb'}}>회원가입</Text>
           </TouchableOpacity>
         </SmallBtn>
-        <SmallBtn style={{marginBottom: 10}}>
-          <TouchableOpacity>
-            <Text style={{color: '#7fcafb'}}>비밀번호 찾기</Text>
-          </TouchableOpacity>
-        </SmallBtn>
-
+        
         <>
-          <TouchableOpacity onPress={onSubmit}>
+          <TouchableOpacity onPress = {handleSubmit}>
             <Btn>
               <Text style={{color: 'white'}}>로그인</Text>
             </Btn>
@@ -91,11 +86,3 @@ const Login = ({navigation, addToken}) => {
     </Container>
   );
 };
-
-const mapDispatchToProps = (distpatch) => {
-  return {
-    addToken: (email, password) =>
-      distpatch(loginUser({email: email, password: password})),
-  };
-};
-export default connect(null, mapDispatchToProps)(Login);

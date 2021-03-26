@@ -4,10 +4,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import Home from '../screen/Home';
-import Profile from '../screen/Profile';
-import Search from '../screen/Search';
-import {NavigationContainer} from '@react-navigation/native';
+import index from '../screen/Main/Home/index';
+import Profile from '../screen/Main/Profile';
+import Search from '../screen/Main/Search';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -15,7 +14,7 @@ const Stack = createStackNavigator();
 const HomeTab = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" component={index} />
     </Stack.Navigator>
   );
 };
