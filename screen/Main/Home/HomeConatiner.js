@@ -3,7 +3,7 @@ import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 
 import HomePresenter from './HomePresenter';
-import {HeaderIcon} from '../../../Utility';
+import {HeaderIcon} from '../../../component/Utility';
 
 const Header = styled.View`
   flex-direction: row;

@@ -35,6 +35,7 @@ const SmallBtn = styled.View`
   height: 30px;
   align-items: flex-end;
   justify-content: center;
+  margin-bottom : 10px;
 `;
 const Btn = styled.View`
   height: 45px;

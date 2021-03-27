@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
-import {trimText} from '../Utility';
+import {trimText} from './Utility';
 
 const Container = styled.View`
   width: 70px;

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import SignUpPresenter from './SignUpPresenter';
-import api from '../../../api';
+import api from '../../../component/api';
 
 const SignUpContainer = ({navigation: {navigate}}) => {
   const [email, setEmail] = useState('');

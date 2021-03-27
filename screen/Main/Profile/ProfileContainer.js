@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import ProfilePresenter from './ProfilePresenter';
+import React from 'react';
+import ProfileHeader from './ProfileHeader';
 
 export default () => {
-  return <ProfilePresenter />;
+  return <ProfileHeader />;
 };
