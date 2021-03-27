@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import index from '../screen/Main/Home/index';
+import Home from '../screen/Main/Home';
 import Profile from '../screen/Main/Profile';
 import Search from '../screen/Main/Search';
 
@@ -14,15 +14,15 @@ const Stack = createStackNavigator();
 const HomeTab = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={index} />
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 };
 
 const ProfileTab = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Profile" component={Profile} />
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Profile" component={Profile}/>
     </Stack.Navigator>
   );
 };

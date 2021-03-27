@@ -29,7 +29,7 @@ const SignUpContainer = ({navigation: {navigate}}) => {
       return;
     }
     try {
-      const {status} = await api.createAccount({
+      const response = await api.createAccount({
         email,
         password,
         name,
@@ -37,12 +37,12 @@ const SignUpContainer = ({navigation: {navigate}}) => {
         gender,
       });
       // 회원가입이 되면
-      if (status === 200) {
+      if (response.status === 200) {
         alert('Sign Up Success!');
-        navigate.goBack();
+        navigate('SignIn');
       }
     } catch (e) {
-      alert('error');
+      alert('이미있는계정');
     }
   };
 
