@@ -21,7 +21,7 @@ const HomeTab = () => {
 
 const ProfileTab = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator>
       <Stack.Screen name="Profile" component={Profile}/>
     </Stack.Navigator>
   );

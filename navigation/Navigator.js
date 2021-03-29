@@ -9,7 +9,7 @@ const Navigator = () => {
   const {isLoggedIn} = useSelector((state) => state.userReducer);
   return (
     <NavigationContainer>
-      {isLoggedIn ? <MainContainer /> : <LoginNavigator />}
+      {isLoggedIn ? <LoginNavigator /> : <MainContainer />}
     </NavigationContainer>
   );
 };

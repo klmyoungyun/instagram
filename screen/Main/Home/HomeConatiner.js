@@ -9,18 +9,18 @@ const Header = styled.View`
   flex-direction: row;
 `;
 export default ({navigation}) => {
-  const [feeds, setFeeds] = useState({
-    data:{
-      userFeed: [],
-      userFeedError : null,
-    }
-  });
-  
+
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerStyle: {shadowColor: 'white'},
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomColor: 'white',
+        backgroundColor: '#fff',
+        elevation:0
+      },
       headerTitle: 'instagram',
       headerTitleAlign: 'left',
+      headerTintColor: 'black',
       headerTitleStyle: {fontSize: 25},
       headerRight: () => (
         <Header>
@@ -32,5 +32,5 @@ export default ({navigation}) => {
     });
   }, []);
 
-  return <HomePresenter navigation = {navigation}/>;
+  return <HomePresenter navigation={navigation} />;
 };
