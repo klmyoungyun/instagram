@@ -4,13 +4,17 @@ import styled from 'styled-components';
 
 const width = Dimensions.get('screen').width;
 
-const PrifileHeader = styled.View`
-  flex-direction: row;
+const Container = styled.View`
   padding-left: 15px;
   padding-right: 15px;
+  background-color: #fff;
+`;
+
+const PrifileHeader = styled.View`
+  margin-top: 10px;
+  flex-direction: row;
 `;
 const ProfileImageContainer = styled.View`
-  background-color: red;
   flex: 1;
   padding: 3px;
   align-items: center;
@@ -22,7 +26,6 @@ const ProfileImage = styled.Image`
   border-radius: 40px;
 `;
 const ProfileContent = styled.View`
-  background-color: blue;
   flex: 3;
   flex-direction: row;
   align-items: center;
@@ -39,44 +42,56 @@ const LabelCount = styled.Text`
 const LabelTitle = styled.Text`
   font-weight: 300;
 `;
-
+const ProfileMessage = styled.View`
+  justify-content: center;
+  height: 50px;
+  margin-bottom: 5px;
+`;
+const Message = styled.Text`
+  line-height: 20px;
+  font-size: 12px;
+`;
 const ProfileBottom = styled.View`
   flex-direction: row;
-  padding-left: 15px;
-  padding-right: 15px;
-  align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  height: 30px;
 `;
 const Btn = styled.View`
-  width: ${width / 2.4}px;
+  width: ${width / 2.2}px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   border: 1px solid darkgray;
+  border-radius: 5px;
 `;
 
-export default ({image, posts, follower, following}) => {
+export default ({profileData}) => {
   return (
-    <>
+    <Container>
       <PrifileHeader>
         <ProfileImageContainer>
-          <ProfileImage
-            source={{uri: 'https://steemitimages.com/u/jaydih/avatar'}}
-          />
+          <ProfileImage source={{uri: profileData.profileImage}} />
         </ProfileImageContainer>
 
         <ProfileContent>
           <ProfileItem>
-            <LabelCount>{posts}</LabelCount>
+            <LabelCount>{profileData.posts}</LabelCount>
             <LabelTitle>게시물</LabelTitle>
           </ProfileItem>
           <ProfileItem>
-            <LabelCount>{follower}</LabelCount>
+            <LabelCount>{profileData.follower}</LabelCount>
             <LabelTitle>팔로워</LabelTitle>
           </ProfileItem>
           <ProfileItem>
-            <LabelCount>{following}</LabelCount>
+            <LabelCount>{profileData.following}</LabelCount>
             <LabelTitle>팔로잉</LabelTitle>
           </ProfileItem>
         </ProfileContent>
       </PrifileHeader>
+
+      <ProfileMessage>
+        <Message numberOfLines={2}>{profileData.message}</Message>
+      </ProfileMessage>
 
       <ProfileBottom>
         <TouchableOpacity>
@@ -90,6 +105,6 @@ export default ({image, posts, follower, following}) => {
           </Btn>
         </TouchableOpacity>
       </ProfileBottom>
-    </>
+    </Container>
   );
 };
