@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const callApi = async (method , path, data) => {
-    const baseUrl = 'http://121.129.210.83:8080/';
+    const baseUrl = '';
     const fullUrl = `${baseUrl}${path}`
     if(method === 'post'){
         return axios.post(fullUrl, data);
