@@ -1,26 +1,28 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
-import {TouchableOpacity} from 'react-native';
+import React, {useEffect, useLayoutEffect} from 'react';
+import {TouchableOpacity, ScrollView} from 'react-native';
 import {useSelector} from 'react-redux';
 import styled from 'styled-components';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import Material from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
 import {HeaderIcon} from '../../../component/Utility';
+import {loadFeed, loadProfile} from '../../../redux/feedSlice';
+import ProfileFeed from './ProfileFeed';
 import ProfileHeader from './ProfileHeader';
-import api from '../../../component/api';
+import ProfileTag from './ProfileTag';
+import {ScreenStackHeaderBackButtonImage} from 'react-native-screens';
+
+const Tab = createMaterialTopTabNavigator();
 
 const Header = styled.View`
   flex-direction: row;
 `;
 export default ({navigation}) => {
   const memberId = useSelector((state) => state.userReducer);
+  const {profile} = useSelector((state) => state.feedReducer);
+  const feedList = useSelector((state) => state.feedReducer);
 
-  const [userProfile, setUserProfile] = useState({
-    name: 'default',
-    profileImage: null,
-    posts: null,
-    follower: null,
-    following: null,
-    message: '',
-  });
   useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
@@ -29,7 +31,7 @@ export default ({navigation}) => {
         backgroundColor: '#fff',
         elevation: 0,
       },
-      headerTitle: `${userProfile.name}`,
+      headerTitle: `${profile.name}`,
       headerTitleAlign: 'left',
       headerTintColor: 'black',
       headerTitleStyle: {fontSize: 25},
@@ -43,15 +45,31 @@ export default ({navigation}) => {
   }, []);
 
   useEffect(() => {
-    const getUserInfo = async (memberId) => {
-      try {
-        const {data} = await api.getProfile(memberId);
-        setUserProfile(data);
-      } catch (e) {
-        console.log('err');
-      }
-    };
-    getUserInfo(memberId);
+    loadProfile(memberId);
+    loadFeed(memberId);
   }, []);
-  return <ProfileHeader profileData={userProfile} />;
+  return (
+    <ScrollView style={{backgroundColor: '#fff'}}>
+      <ProfileHeader profileData={profile} />
+      <Tab.Navigator
+        tabBarOptions={{showIcon: true, showLabel: false, scrollEnabled: true}}>
+        <Tab.Screen
+          name="Feed"
+          component={ProfileFeed}
+          options={{
+            tabBarIcon: () => <Material name="grid" size={26} color="black" />,
+          }}
+        />
+        <Tab.Screen
+          name="Tag"
+          component={ProfileTag}
+          options={{
+            tabBarIcon: () => (
+              <FontAwesome name="user-tag" size={26} color="black" />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </ScrollView>
+  );
 };

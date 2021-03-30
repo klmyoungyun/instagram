@@ -7,9 +7,7 @@ const width = Dimensions.get('screen').width;
 const Container = styled.View`
   padding-left: 15px;
   padding-right: 15px;
-  background-color: #fff;
 `;
-
 const PrifileHeader = styled.View`
   margin-top: 10px;
   flex-direction: row;
@@ -53,11 +51,12 @@ const Message = styled.Text`
 `;
 const ProfileBottom = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items:center;
   height: 30px;
+  margin-bottom: 15px;
 `;
 const Btn = styled.View`
-  width: ${width / 2.2}px;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -70,21 +69,27 @@ export default ({profileData}) => {
     <Container>
       <PrifileHeader>
         <ProfileImageContainer>
-          <ProfileImage source={{uri: profileData.profileImage}} />
+          {profileData.profileImage ? (
+            <ProfileImage source={{uri: profileData.profileImage}} />
+          ) : (
+            <ProfileImage
+              source={require('../../../Assert/Image/default_profile.png')}
+            />
+          )}
         </ProfileImageContainer>
 
         <ProfileContent>
           <ProfileItem>
             <LabelCount>{profileData.posts}</LabelCount>
-            <LabelTitle>게시물</LabelTitle>
+            <LabelTitle>Posts</LabelTitle>
           </ProfileItem>
           <ProfileItem>
             <LabelCount>{profileData.follower}</LabelCount>
-            <LabelTitle>팔로워</LabelTitle>
+            <LabelTitle>Follower</LabelTitle>
           </ProfileItem>
           <ProfileItem>
             <LabelCount>{profileData.following}</LabelCount>
-            <LabelTitle>팔로잉</LabelTitle>
+            <LabelTitle>Fllowing</LabelTitle>
           </ProfileItem>
         </ProfileContent>
       </PrifileHeader>
@@ -94,14 +99,9 @@ export default ({profileData}) => {
       </ProfileMessage>
 
       <ProfileBottom>
-        <TouchableOpacity>
+        <TouchableOpacity style={{width:'100%'}}>
           <Btn>
-            <Text>프로필 편집</Text>
-          </Btn>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Btn>
-            <Text>저장됨</Text>
+            <Text style={{fontWeight: 'bold'}}>Edit Profile</Text>
           </Btn>
         </TouchableOpacity>
       </ProfileBottom>
