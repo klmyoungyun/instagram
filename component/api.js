@@ -11,4 +11,5 @@ export default{
     createAccount: form => callApi('post', '/signUp/v1/members', form),
     login: form => callApi('post', '/signIn/v1/members', form),
     getProfile: form => callApi('get',' ',form),
+    getFeedList : form => callApi('get',' ',form),
 }
