@@ -22,7 +22,7 @@ export const userLogin = (form) => async (dispatch) => {
       dispatch(logIn(memberId));
     }
   } catch (e) {
-    alert('잘못된 아이디, 비밀번호');
+    alert('wrong');
   }
 };
 
