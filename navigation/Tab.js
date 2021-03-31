@@ -22,7 +22,7 @@ const HomeTab = () => {
 const ProfileTab = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Profile" component={Profile}/>
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 };
@@ -37,7 +37,12 @@ const SearchTab = () => {
 export default () => {
   return (
     <Tab.Navigator
-      tabBarOptions={{showLabel: false}}
+      tabBarOptions={{
+        showLabel: false,
+        style: {
+          elevation: 0,
+        },
+      }}
       screenOptions={({route}) => ({
         tabBarIcon: ({focused}) => {
           let iconName = Platform.OS === 'ios' ? 'ios-' : 'md-';

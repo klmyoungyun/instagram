@@ -12,12 +12,14 @@ const Container = styled.View`
 const StoryContainer = styled.View`
   height: 120px;
   width: 100%;
+  border-bottom-color: gray;
+  border-bottom-width: 0.5px;
 `;
 const FeedContainer = styled.View`
   width: 100%;
   height: 100%;
-  border: 1px solid blue;
 `;
+
 export default () => {
   return (
     <Container>

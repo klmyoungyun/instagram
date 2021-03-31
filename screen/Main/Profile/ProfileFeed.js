@@ -2,8 +2,8 @@ import React from 'react';
 import {Text, View} from 'react-native';
 export default () => {
   return (
-    <View>
-      <Text> TagArea</Text>
+    <View style={{backgroundColor:'white'}}>
+      <Text> feedArea</Text>
     </View>
   );
 };

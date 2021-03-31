@@ -1,8 +1,8 @@
 import React, {useEffect, useLayoutEffect} from 'react';
-import {TouchableOpacity, ScrollView} from 'react-native';
+import {TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 import {useSelector} from 'react-redux';
-import styled from 'styled-components';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import styled from 'styled-components';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
@@ -11,8 +11,8 @@ import {loadFeed, loadProfile} from '../../../redux/feedSlice';
 import ProfileFeed from './ProfileFeed';
 import ProfileHeader from './ProfileHeader';
 import ProfileTag from './ProfileTag';
-import {ScreenStackHeaderBackButtonImage} from 'react-native-screens';
 
+const width = Dimensions.get('screen').width;
 const Tab = createMaterialTopTabNavigator();
 
 const Header = styled.View`
@@ -48,27 +48,40 @@ export default ({navigation}) => {
     loadProfile(memberId);
     loadFeed(memberId);
   }, []);
+
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
       <ProfileHeader profileData={profile} />
       <Tab.Navigator
-        tabBarOptions={{showIcon: true, showLabel: false, scrollEnabled: true}}>
-        <Tab.Screen
-          name="Feed"
-          component={ProfileFeed}
-          options={{
-            tabBarIcon: () => <Material name="grid" size={26} color="black" />,
-          }}
-        />
-        <Tab.Screen
-          name="Tag"
-          component={ProfileTag}
-          options={{
-            tabBarIcon: () => (
-              <FontAwesome name="user-tag" size={26} color="black" />
-            ),
-          }}
-        />
+        lazy="true"
+        tabBarOptions={{
+          showIcon: true,
+          showLabel: false,
+          scrollEnabled: true,
+          style: {
+            backgroundColor: '#fff',
+            elevation: 0,
+          },
+          tabStyle: {
+            justifyContent: 'center',
+            width: width / 2,
+          },
+          indicatorStyle: {
+            height: 1,
+            backgroundColor: 'black',
+          },
+        }}
+        screenOptions={({route}) => ({
+          tabBarIcon: () => {
+            if (route.name === 'Feed') {
+              return <Material name="grid" size={23} color="black" />;
+            } else if (route.name === 'Tag') {
+              return <FontAwesome name="user-tag" size={20} color="black" />;
+            }
+          },
+        })}>
+        <Tab.Screen name="Feed" component={ProfileFeed} />
+        <Tab.Screen name="Tag" component={ProfileTag} />
       </Tab.Navigator>
     </ScrollView>
   );
