@@ -5,7 +5,8 @@ const feedSlice = createSlice({
   name: 'feedReducer',
   initialState: {
     profile: {
-      name: 'userName',
+      name:'user',
+      username: 'username',
       profileImage: null,
       posts: null,
       follower: null,

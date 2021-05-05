@@ -1,8 +1,6 @@
 import React from 'react';
-import {Dimensions, Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
-
-const width = Dimensions.get('screen').width;
 
 const Container = styled.View`
   padding-left: 15px;
@@ -64,7 +62,7 @@ const Btn = styled.View`
   border-radius: 5px;
 `;
 
-export default ({profileData}) => {
+const PorfileHeader= ({profileData}) => {
   return (
     <Container>
       <PrifileHeader>
@@ -73,28 +71,29 @@ export default ({profileData}) => {
             <ProfileImage source={{uri: profileData.profileImage}} />
           ) : (
             <ProfileImage
-              source={require('../../../Assert/Image/default_profile.png')}
+              source={require('../../../../Assets/Images/default_profile.png')}
             />
           )}
         </ProfileImageContainer>
 
         <ProfileContent>
           <ProfileItem>
-            <LabelCount>{profileData.posts}</LabelCount>
+            <LabelCount>{profileData.posts ? profileData.posts : 0}</LabelCount>
             <LabelTitle>Posts</LabelTitle>
           </ProfileItem>
           <ProfileItem>
-            <LabelCount>{profileData.follower}</LabelCount>
+            <LabelCount>{profileData.follower ? profileData.follower : 0}</LabelCount>
             <LabelTitle>Follower</LabelTitle>
           </ProfileItem>
           <ProfileItem>
-            <LabelCount>{profileData.following}</LabelCount>
-            <LabelTitle>Fllowing</LabelTitle>
+            <LabelCount>{profileData.following ? profileData.following : 0}</LabelCount>
+            <LabelTitle>Following</LabelTitle>
           </ProfileItem>
         </ProfileContent>
       </PrifileHeader>
 
       <ProfileMessage>
+        <Text>{profileData.name}</Text>
         <Message numberOfLines={2}>{profileData.message}</Message>
       </ProfileMessage>
 
@@ -108,3 +107,5 @@ export default ({profileData}) => {
     </Container>
   );
 };
+
+export default PorfileHeader;

@@ -1,8 +1,7 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
-import {Text} from 'react-native';
+import {FlatList, ScrollView} from 'react-native';
 import styled from 'styled-components';
-
+import Feed from '../../../component/Feed';
 import Story from '../../../component/Story';
 
 const Container = styled.View`
@@ -19,8 +18,15 @@ const FeedContainer = styled.View`
   width: 100%;
   height: 100%;
 `;
+  
+const images = ['https://lh3.googleusercontent.com/proxy/CQ9c0CvR_Qt3FiKdj5ARvNE_8_8vwmM7-_P6e3ecactZhjnChkatAu6hsN6iDBBXtfGk8zbLS5sHdJ0Gl6e__d3sFTbL2X-afaiwC4sPvFOJh1a25G0',
+'http://www.bokjitimes.com/news/photo/202002/22767_15736_3416.jpg',
+'https://images.chosun.com/resizer/e_XfBvoOfR92cYym-TkRB4tsKqE=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/RSITTQF5C7LGXQXY5MZ56EGNHE.jpg',
+'https://img.hankyung.com/photo/201811/01.18271154.1.jpg',
+'https://img.huffingtonpost.com/asset/5ab0ca981f0000150316ae35.jpeg?ops=scalefit_630_noupscale'];
 
 export default () => {
+
   return (
     <Container>
       <StoryContainer>
@@ -53,24 +59,15 @@ export default () => {
             url={'https://steemitimages.com/u/happyberrysboy/avatar'}
             name={'name5'}
           />
-          <Story
-            url={'https://steemitimages.com/u/tradingideas/avatar'}
-            name={'name6'}
-          />
-          <Story
-            url={'https://steemitimages.com/u/koyuh8/avatar'}
-            name={'name7'}
-          />
-          <Story
-            url={'https://steemitimages.com/u/goodhello/avatar'}
-            name={'name8'}
-          />
         </ScrollView>
       </StoryContainer>
       <FeedContainer>
-        <Text> main area</Text>
+        <ScrollView>
+        <Feed id={1} name={'kim'} image={images} like={123} description={'goodgg211oodog'}></Feed>
+        <Feed id={2} name={'le1231e'} image={images} like={31123} description={'go1231231og'}></Feed>
+        <Feed id={3} name={'jee1233'} image={images} like={122233} description={'goodg2331goodog'}></Feed>
+        </ScrollView>
       </FeedContainer>
     </Container>
   );
 };
-

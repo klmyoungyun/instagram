@@ -8,9 +8,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
 import {HeaderIcon} from '../../../component/Utility';
 import {loadFeed, loadProfile} from '../../../redux/feedSlice';
-import ProfileFeed from './ProfileFeed';
-import ProfileHeader from './ProfileHeader';
-import ProfileTag from './ProfileTag';
+import ProfileFeed from './Feed';
+import ProfileHeader from './Header';
+import ProfileTag from './Tag';
 
 const width = Dimensions.get('screen').width;
 const Tab = createMaterialTopTabNavigator();
@@ -18,6 +18,7 @@ const Tab = createMaterialTopTabNavigator();
 const Header = styled.View`
   flex-direction: row;
 `;
+
 export default ({navigation}) => {
   const memberId = useSelector((state) => state.userReducer);
   const {profile} = useSelector((state) => state.feedReducer);
@@ -31,7 +32,7 @@ export default ({navigation}) => {
         backgroundColor: '#fff',
         elevation: 0,
       },
-      headerTitle: `${profile.name}`,
+      headerTitle: `${profile.username}`,
       headerTitleAlign: 'left',
       headerTintColor: 'black',
       headerTitleStyle: {fontSize: 25},
@@ -47,7 +48,7 @@ export default ({navigation}) => {
   useEffect(() => {
     loadProfile(memberId);
     loadFeed(memberId);
-  }, []);
+  },[]);
 
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>

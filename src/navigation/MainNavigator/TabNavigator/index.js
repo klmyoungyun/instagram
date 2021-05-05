@@ -4,9 +4,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import Home from '../screen/Main/Home';
-import Profile from '../screen/Main/Profile';
-import Search from '../screen/Main/Search';
+import Home from '../../../screen/Main/Home';
+import Profile from '../../../screen/Main/Profile';
+import Search from '../../../screen/Main/Search';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -34,7 +34,7 @@ const SearchTab = () => {
     </Stack.Navigator>
   );
 };
-export default () => {
+const TabNavigator =  () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -66,3 +66,4 @@ export default () => {
     </Tab.Navigator>
   );
 };
+export default TabNavigator;
