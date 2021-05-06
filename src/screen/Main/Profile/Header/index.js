@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Container = styled.View`
   padding-left: 15px;
@@ -62,7 +63,7 @@ const Btn = styled.View`
   border-radius: 5px;
 `;
 
-const PorfileHeader= ({profileData}) => {
+const ProfileHeader= ({profileData}) => {
   return (
     <Container>
       <PrifileHeader>
@@ -108,4 +109,8 @@ const PorfileHeader= ({profileData}) => {
   );
 };
 
-export default PorfileHeader;
+ProfileHeader.propTyes = {
+  profileData : PropTypes.object.isRequired,
+}
+
+export default ProfileHeader;

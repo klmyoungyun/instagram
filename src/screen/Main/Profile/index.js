@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
-import {HeaderIcon} from '../../../component/Utility';
+import {HeaderIcon} from '../../../components/Utility';
 import {loadFeed, loadProfile} from '../../../redux/feedSlice';
 import ProfileFeed from './Feed';
 import ProfileHeader from './Header';
@@ -22,7 +22,6 @@ const Header = styled.View`
 export default ({navigation}) => {
   const memberId = useSelector((state) => state.userReducer);
   const {profile} = useSelector((state) => state.feedReducer);
-  const feedList = useSelector((state) => state.feedReducer);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -47,7 +46,6 @@ export default ({navigation}) => {
 
   useEffect(() => {
     loadProfile(memberId);
-    loadFeed(memberId);
   },[]);
 
   return (

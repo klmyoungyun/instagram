@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import {Button} from 'react-native';
 
 const Container = styled.View`
@@ -66,4 +67,18 @@ const SignUpPresenter = ({
     </Container>
   );
 };
+
+SignUpPresenter.propTypes = {
+  email: PropTypes.string.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  password: PropTypes.number.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  setName: PropTypes.func.isRequired,
+  age: PropTypes.number.isRequired,
+  setAge: PropTypes.func.isRequired,
+  gender: PropTypes.string.isRequired,
+  setGender: PropTypes.func.isRequired,
+  onSignUp: PropTypes.func.isRequired,
+}
 export default SignUpPresenter;

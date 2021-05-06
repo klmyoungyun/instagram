@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Container = styled.View`
   flex: 1;
@@ -35,7 +36,7 @@ const SmallBtn = styled.View`
   height: 30px;
   align-items: flex-end;
   justify-content: center;
-  margin-bottom : 10px;
+  margin-bottom: 10px;
 `;
 const Btn = styled.View`
   height: 45px;
@@ -44,7 +45,7 @@ const Btn = styled.View`
   align-items: center;
   justify-content: center;
 `;
-export default ({
+const SignInPresenter = ({
   navigation,
   email,
   setEmail,
@@ -75,9 +76,9 @@ export default ({
             <Text style={{color: '#7fcafb'}}>회원가입</Text>
           </TouchableOpacity>
         </SmallBtn>
-        
+
         <>
-          <TouchableOpacity onPress = {handleSubmit}>
+          <TouchableOpacity onPress={handleSubmit}>
             <Btn>
               <Text style={{color: 'white'}}>로그인</Text>
             </Btn>
@@ -87,3 +88,13 @@ export default ({
     </Container>
   );
 };
+
+SignInPresenter.propTypes = {
+  email: PropTypes.string.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+};
+
+export default SignInPresenter;
