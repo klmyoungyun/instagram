@@ -7,12 +7,12 @@ import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
 import {HeaderIcon} from '../../../components/Utility';
-import {loadFeed, loadProfile} from '../../../redux/feedSlice';
+import {loadProfile} from '../../../redux/feedSlice';
 import ProfileFeed from './Feed';
 import ProfileHeader from './Header';
 import ProfileTag from './Tag';
 
-const width = Dimensions.get('screen').width;
+const width = Dimensions.get('window').width;
 const Tab = createMaterialTopTabNavigator();
 
 const Header = styled.View`
@@ -20,9 +20,9 @@ const Header = styled.View`
 `;
 
 export default ({navigation}) => {
-  const memberId = useSelector((state) => state.userReducer);
+  const {memberId} = useSelector((state) => state.userReducer);
   const {profile} = useSelector((state) => state.feedReducer);
-
+  
   useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {

@@ -1,7 +1,8 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
-import {trimText} from './Utility';
+import PropTyes from 'prop-types';
+import {trimText} from '../Utility';
 
 const Container = styled.View`
   width: 70px;
@@ -30,7 +31,8 @@ const Thumbnail = styled.Image`
   width: 58px;
   border-radius: 29px;
 `;
-export default ({id, url, name}) => {
+
+const Story = ({id, url, name}) => {
   return (
     <Container>
       <TouchableOpacity>
@@ -42,3 +44,10 @@ export default ({id, url, name}) => {
     </Container>
   );
 };
+
+Story.propTypes = {
+  url: PropTyes.string.isRequired,
+  name: PropTyes.string.isRequired,
+}
+
+export default Story;

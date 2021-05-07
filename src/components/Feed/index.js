@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components/native';
-import {Dimensions} from 'react-native';
+import {Dimensions, Text} from 'react-native';
 import FeedBody from './FeedBody';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const width = Dimensions.get('window').width;
 
@@ -29,7 +29,7 @@ const Body = styled.View`
   height: 400px;
 `;
 const Footer = styled.View`
-  height: ${width / 4}px;
+  height: 100%;
   margin: 0px 12px;
 `;
 const Like = styled.Text`
@@ -39,8 +39,16 @@ const Like = styled.Text`
   font-size: 14px;
 `;
 const Description = styled.Text``;
+const MoreBtn = styled.Text`
+  color: gray;
+`;
+const Comment = styled.View`
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
 
-const Feed = ({id, name, photo, image, like, description}) => {
+const Feed = ({id, name, photo, image, like, description, comment = 0}) => {
+  const [showMore, setShowMore] = useState(true);
   return (
     <>
       <Header>
@@ -62,10 +70,16 @@ const Feed = ({id, name, photo, image, like, description}) => {
 
       <Footer>
         <Like>좋아요 {like}개</Like>
-        <Description numberOfLines={2}>
-          <UserName>{name} </UserName>
+        <Description numberOfLines={showMore ? 2 : 0}>
+          <UserName>{name}</UserName>
           {description}
         </Description>
+        <MoreBtn onPress={() => setShowMore(!showMore)}>
+          {showMore ? '더보기' : ''}
+        </MoreBtn>
+        <Comment>
+          <Text style={{color: 'gray'}}>댓글 {comment}개 모두 보기</Text>
+        </Comment>
       </Footer>
     </>
   );
@@ -78,6 +92,7 @@ Feed.propTypes = {
   image: PropTypes.array.isRequired,
   like: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
-}
+  comment: PropTypes.number,
+};
 
 export default Feed;

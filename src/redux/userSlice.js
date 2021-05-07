@@ -12,6 +12,7 @@ const userSlice = createSlice({
   },
 });
 export const {logIn} = userSlice.actions;
+
 export const userLogin = (form) => async (dispatch) => {
   try {
     const {
@@ -22,7 +23,7 @@ export const userLogin = (form) => async (dispatch) => {
       dispatch(logIn(memberId));
     }
   } catch (e) {
-    alert('wrong');
+    alert('login access error');
   }
 };
 
