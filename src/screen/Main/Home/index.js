@@ -1,20 +1,21 @@
 import React, {useEffect, useLayoutEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, FlatList} from 'react-native';
 import styled from 'styled-components';
 
-import HomePresenter from './HomePresenter';
+import Feed from '../../../components/Feed';
+import Story from '../../../components/Story';
 import {HeaderIcon} from '../../../components/Utility';
 import {loadHomeFeedList, loadStoryList} from '../../../redux/homeSlice';
 
 const Header = styled.View`
   flex-direction: row;
 `;
+
 const Home = ({navigation}) => {
   const {memberId} = useSelector((state) => state.userReducer);
-  const {storyList} = useSelector((state) => state.homeReducer);
-  const {homeFeedList} = useSelector((state) => state.homeReducer);
-  
+  const {storyList, homeFeedList} = useSelector((state) => state.homeReducer);
+
   useEffect(() => {
     loadStoryList(memberId);
     loadHomeFeedList(memberId);
@@ -42,7 +43,28 @@ const Home = ({navigation}) => {
     });
   }, []);
 
-  return <HomePresenter storyList={storyList} homeFeedList={homeFeedList} />;
+  return (
+    <FlatList
+      keyExtractor={(item, index) => `home${index}`}
+      data={homeFeedList}
+      showsVerticalScrollIndicator={false}
+      onEndReached={() => {
+        loadHomeFeedList(memberId);
+      }}
+      onEndReachedThreshold={0.5}
+      ListHeaderComponent={<Story storyList={storyList} />}
+      renderItem={({item, index}) => (
+        <Feed
+          id={index}
+          name={item.name}
+          image={item.image}
+          like={item.like}
+          description={item.description}
+          comment={item.comment}
+        />
+      )}
+    />
+  );
 };
 
 export default Home;

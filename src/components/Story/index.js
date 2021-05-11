@@ -1,16 +1,16 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {FlatList, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 import PropTyes from 'prop-types';
-import {trimText} from '../Utility';
 
+const StoryContainer = styled.View`
+  border-bottom-color: gray;
+  border-bottom-width: 1px;
+  background-color: white;
+`;
 const Container = styled.View`
-  width: 70px;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  margin-left: 7px;
+  width: 72px;
+  padding: 8px;
 `;
 const Name = styled.Text`
   margin-top: 5px;
@@ -18,36 +18,43 @@ const Name = styled.Text`
   color: gray;
 `;
 const ThumbnailContainer = styled.View`
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-width: 1px;
   border-color: gray;
-  border-radius: 35px;
+  border-radius: 30px;
   align-items: center;
   justify-content: center;
 `;
 const Thumbnail = styled.Image`
-  height: 58px;
-  width: 58px;
-  border-radius: 29px;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
 `;
 
-const Story = ({id, url, name}) => {
-  return (
-    <Container>
-      <TouchableOpacity>
-        <ThumbnailContainer>
-          <Thumbnail source={{uri: url}} />
-        </ThumbnailContainer>
-      </TouchableOpacity>
-      <Name>{trimText(name)}</Name>
-    </Container>
-  );
-};
+const Story = ({storyList}) => (
+  <StoryContainer>
+    <FlatList
+      keyExtractor={(item, index) => `stroy${index}`}
+      data={storyList}
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+      renderItem={({item, index}) => (
+        <Container>
+          <TouchableOpacity>
+            <ThumbnailContainer>
+              <Thumbnail source={{uri: item.url}} />
+            </ThumbnailContainer>
+          </TouchableOpacity>
+          <Name numberOfLines={1}>{item.name}</Name>
+        </Container>
+      )}
+    />
+  </StoryContainer>
+);
 
 Story.propTypes = {
-  url: PropTyes.string.isRequired,
-  name: PropTyes.string.isRequired,
-}
+  storyList: PropTyes.array.isRequired,
+};
 
 export default Story;
