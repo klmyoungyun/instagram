@@ -6,6 +6,9 @@ import {FeedIcon} from '../../Utility';
 
 const width = Dimensions.get('window').width;
 
+const Container = styled.View`
+  height: 100%;
+`;
 const ImageContainer = styled.View`
   height: ${width}px;
   border-top-width: 1px;
@@ -51,7 +54,7 @@ const FeedBody = ({id, images}) => {
   const imageLength = images.length;
 
   return (
-    <>
+    <Container>
       <ScrollView
         horizontal={true}
         pagingEnabled={true}
@@ -95,7 +98,7 @@ const FeedBody = ({id, images}) => {
           <TouchableOpacity>{FeedIcon('bookmark', 0)}</TouchableOpacity>
         </RightContainer>
       </BottomContainer>
-    </>
+    </Container>
   );
 };
 

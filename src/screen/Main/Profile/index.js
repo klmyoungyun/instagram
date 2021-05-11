@@ -1,8 +1,10 @@
 import React, {useEffect, useLayoutEffect} from 'react';
 import {TouchableOpacity, ScrollView, Dimensions} from 'react-native';
-import {useSelector} from 'react-redux';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import styled from 'styled-components';
+import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/core';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
@@ -19,10 +21,13 @@ const Header = styled.View`
   flex-direction: row;
 `;
 
-export default ({navigation}) => {
+const Profile = () => {
   const {memberId} = useSelector((state) => state.userReducer);
   const {profile} = useSelector((state) => state.feedReducer);
-  
+  const navigation = useNavigation();
+
+  const addPost = () => navigation.navigate('addPost');
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerStyle: {
@@ -37,7 +42,9 @@ export default ({navigation}) => {
       headerTitleStyle: {fontSize: 25},
       headerRight: () => (
         <Header>
-          <TouchableOpacity>{HeaderIcon('plus-square')}</TouchableOpacity>
+          <TouchableOpacity onPress={addPost}>
+            {HeaderIcon('plus-square')}
+          </TouchableOpacity>
           <TouchableOpacity>{HeaderIcon('menu')}</TouchableOpacity>
         </Header>
       ),
@@ -46,13 +53,14 @@ export default ({navigation}) => {
 
   useEffect(() => {
     loadProfile(memberId);
-  },[]);
+  }, []);
 
   return (
-    <ScrollView style={{backgroundColor: '#fff'}}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={{backgroundColor: '#fff'}}>
       <ProfileHeader profileData={profile} />
       <Tab.Navigator
-        lazy="true"
         tabBarOptions={{
           showIcon: true,
           showLabel: false,
@@ -85,3 +93,5 @@ export default ({navigation}) => {
     </ScrollView>
   );
 };
+
+export default Profile;

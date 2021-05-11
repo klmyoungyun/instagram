@@ -15,6 +15,6 @@ export default{
     login: form => callApi('post', '/signIn/v1/members', form),
     getProfile: form => callApi('get',' ',form),
     getFeedList : form => callApi('get',' ',form),
-    getStoryList: form => callApi('get',' ',form),
-    getHomeFeedList : form => callApi('get',' ',form),
+    getStory: form => callApi('get',' ',form),
+    getHomeFeed : form => callApi('get',' ',form),
 }

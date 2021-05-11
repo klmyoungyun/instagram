@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
-import {Dimensions, Text} from 'react-native';
+import {Dimensions, Text, View} from 'react-native';
 import FeedBody from './FeedBody';
 import PropTypes from 'prop-types';
 
 const width = Dimensions.get('window').width;
 
+const FeedContainer = styled.View`
+  background-color:white;
+`;
 const Header = styled.View`
   justify-content: center;
   height: ${width / 7}px;
@@ -29,7 +32,6 @@ const Body = styled.View`
   height: 400px;
 `;
 const Footer = styled.View`
-  height: 100%;
   margin: 0px 12px;
 `;
 const Like = styled.Text`
@@ -49,8 +51,9 @@ const Comment = styled.View`
 
 const Feed = ({id, name, photo, image, like, description, comment = 0}) => {
   const [showMore, setShowMore] = useState(true);
+
   return (
-    <>
+    <FeedContainer>
       <Header>
         <Profile>
           {photo ? (
@@ -71,7 +74,7 @@ const Feed = ({id, name, photo, image, like, description, comment = 0}) => {
       <Footer>
         <Like>좋아요 {like}개</Like>
         <Description numberOfLines={showMore ? 2 : 0}>
-          <UserName>{name}</UserName>
+          <UserName>{name} </UserName>
           {description}
         </Description>
         <MoreBtn onPress={() => setShowMore(!showMore)}>
@@ -81,7 +84,7 @@ const Feed = ({id, name, photo, image, like, description, comment = 0}) => {
           <Text style={{color: 'gray'}}>댓글 {comment}개 모두 보기</Text>
         </Comment>
       </Footer>
-    </>
+    </FeedContainer>
   );
 };
 
@@ -92,7 +95,7 @@ Feed.propTypes = {
   image: PropTypes.array.isRequired,
   like: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
-  comment: PropTypes.number,
+  comment: PropTypes.number.isRequired,
 };
 
 export default Feed;

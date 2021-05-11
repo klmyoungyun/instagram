@@ -13,7 +13,25 @@ const feedSlice = createSlice({
       following: null,
       message: '',
     },
-    profileFeedList: [],
+    profileFeedList: [
+      {
+        image:
+          'http://file3.instiz.net/data/cached_img/upload/2020/10/28/16/93c9213653f94459b81d441dd3f54f85.jpg',
+      },
+      {
+        image:
+          'http://www.bokjitimes.com/news/photo/202002/22767_15736_3416.jpg',
+      },
+      {
+        image:
+          'https://spnimage.edaily.co.kr/images/Photo/files/NP/S/2020/11/PS20111200137.jpg',
+      },
+      {
+        image:
+          'https://dimg.donga.com/a/600/0/90/5/ugc/MLBPARK/Board/16/06/14/14/1606141488566.jpg',
+      },
+      
+    ],
   },
   reducers: {
     getMyInfo(state, action) {

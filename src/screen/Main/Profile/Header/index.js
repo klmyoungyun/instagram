@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 const Container = styled.View`
   padding-left: 15px;
   padding-right: 15px;
+  background-color: white;
 `;
 const PrifileHeader = styled.View`
   margin-top: 10px;
